@@ -1,5 +1,7 @@
 $(document).ready(function(){
+  $('#maincontent').fadeIn();
 
+  
   var reactionsArray= [ "wtf", "wow", "nope", "see ya", "OMG", "hahaha", "mindblown",];
   
   function createButtons (){
@@ -26,7 +28,7 @@ $(document).ready(function(){
   
   //Creating new buttons
   function createNewButtons(){
-    $("#submitButton").on("click", function (event){
+    $("#submitButton").on("click", function (){
     
       event.preventDefault();
     //Getting user input value from the textbox
@@ -88,13 +90,14 @@ $(document).ready(function(){
 
   displayGiph();
   createNewButtons();
+  createButtons();
 
   //On click functions
 // Display giphs when clicking the buttons
   $(document).on("click", ".giphBtn", displayGiph());
 
 //pausing and unpausing the images.
-$(document).on("click", ".giphImages", function(){
+$(document).on('click', '.giphImages', function(){
   var state = $(this).attr("data-state");
   if (state === "still") {
     $(this).attr("src", $(this).attr("data-animate"));

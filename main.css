@@ -1,0 +1,33 @@
+body{
+  font-family: cursive;
+  /* background-image: url ('https://media.giphy.com/media/vPmJKooQbFTOw/giphy.gif');
+  background-size: cover; */
+}
+
+#header{
+  font-weight: bold;
+  color: blue;
+}
+
+.container{
+  align: center;
+}
+.giphImages{
+  margin: 10px;
+  margin-top: 0px;
+}
+.giphClass{
+  margin: 10px;
+}
+
+#buttonSection{
+  margin: 10px;
+}
+
+#submitButton{
+  maring: 10px;
+}
+
+#searchText{
+  margin-bottom: 10px;
+}
