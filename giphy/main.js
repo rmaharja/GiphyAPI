@@ -2,7 +2,7 @@ $(document).ready(function(){
 
   var reactionsArray= [ "wtf", "wow", "nope", "see ya", "OMG", "hahaha", "mindblown",];
   
-  function createInitialButtons (){
+  function createButtons (){
   
     // makes sure that the button does not repeat.
     $("#buttonSection").empty();
@@ -36,7 +36,7 @@ $(document).ready(function(){
       reactionArray.push(reaction);
       
       // Create new Buttons
-      createInitialButtons();
+      createButtons();
     });
     }
   
