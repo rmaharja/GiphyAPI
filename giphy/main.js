@@ -4,9 +4,8 @@ $( document ).ready(function() {
 //Variables=================================================================================
 //Array of categories
 
-var reactionsArray= [ "wtf", "wow", "nope", "see ya", "OMG", "hahaha", "mind blown",]
+var reactionsArray= [ "wtf", "wow", "nope", "see ya", "OMG", "hahaha", "mindblown",]
 //FUNctions=================================================================================
-
 
 function displayGiph(){
 
@@ -25,31 +24,47 @@ $.ajax({
 .then (function(response){
 
 // Shows URL that is created
-  console.log(queryUrl);
+  console.log("queryURL:");
+  console.log(queryURL);
 // Shows the object from the specific search
-  console.log(response);
+// console.log("response:");
+//   console.log(response);
+
+// Createing a div to hold the giphs
+var giphDiv= $('<div class = "giphCLass">');
+// console.log("giphDiv:");
+// console.log(giphDiv);
 
 // Store the results from AJax in a variable
+  // console.log ("response.data:");
+  // console.log(response.data);
 
-  var giphResult= response.data;
-  console.log(giphResult);
-  // Createing a div to hold the giphs
-  var giphDiv= $("<div class = 'giphy'>");
+  
+  // Could set giphResults= response.data, and use giphResults for future values of response.data.
   // Creating rating variable
-  var rating= response.rating;
-  console.log(rating);
+  for (var i = 0; i<response.data.length; i++){
+  var Rated= response.data[i].rating;
+  // console.log("Rating:")
+  // console.log(Rated);
+
+
   // Creating element to display the rating
-  var pRating= $("<p>").text("Giph Rating:"+ rating);
-  console.log(pRating);
+ var pRating= $("<p>").text("Giph Rating:"+ Rated);
+
+  // console.log(pRating);
   // Display the rating into DOM
   giphDiv.append(pRating);
 
   // Retrieve/Add  the actual giphs (src, still and animated)
 
   //Retrieving the images for giph
-  var srcURL= giphResult[i].images.fixed_height_still.url;
-  var stillURL= giphResult[i].images.fixed_height_still.url;
-  var animatedURL= giphResult[i].images.fixed_height.url;
+  // console.log(reactionsArray);
+  var srcURL= response.data[i].images.fixed_height_still.url;
+  
+  console.log("srcURL:")
+  console.log(srcURL);
+  var stillURL= response.data[i].images.fixed_height_still.url;
+  var animatedURL= response.data[i].images.fixed_height.url;
 
   // add attributes into the image tag
   var giphImage= $("<img>").attr("src", srcURL);
@@ -64,16 +79,28 @@ $.ajax({
 
   //Prepend tp giphSection (from HTML)
 
-  $("#giphSEction").prepend(giphDiv);
+  $("#giphSEction").append(giphDiv);
+ }
+ $(document).on("click", ".action", displayGifs);
+$(document).on("click", ".image", function(){
+    var state = $(this).attr('data-state');
+    if ( state == 'still'){
+        $(this).attr('src', $(this).data('animate'));
+        $(this).attr('data-state', 'animate');
+    }
+    else{
+        $(this).attr('src', $(this).data('still'));
+        $(this).attr('data-state', 'still');
+    }
 
 });
-};
+
 
 // Function creates new buttons.
 function createButton (){
 
   // makes sure that the button does not repeat.
-  $("#buttonSection").empty();
+  // $("#buttonSection").empty();
   //for loop to loop thru every giph
 
   for (var i=0; i< reactionsArray.length; i++){
@@ -92,22 +119,29 @@ function createButton (){
 
 }
 
+function newButtons(){
 $("#submitButton").on("click", function (event){
 
   event.preventDefault();
 //Getting user input value from the textbox
   var reaction= $("#searchText").val().trim();
-  console.log(reaction);
+  // console.log(reaction);
 //Getting the movies  based on the into reactionArray
   reactionArray.push(reaction);
   
   // Create new Buttons
   createButton();
 });
+}
 
-$(document).on("click", ".newGiphBtn", displayGiph);
-
+});
+// $(document).on("click", ".newGiphBtn", displayGiph);
 createButton();
+// displayGiph()
+// $("button").on("click", function() {
+//   displayGipH();
+// }
+
 
 
 
@@ -140,4 +174,3 @@ createButton();
 
 
 
-});
