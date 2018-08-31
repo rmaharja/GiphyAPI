@@ -3,7 +3,7 @@ $(document).ready(function(){
   
   var reactionsArray= [ "wtf", "wow", "nope", "see ya", "OMG", "hahaha", "mindblown"];
   
-  function createButtons (){
+  function displayButtons (){
   
     // makes sure that the button does not repeat.
     $("#buttonSection").empty();
@@ -38,7 +38,7 @@ $(document).ready(function(){
       reactionArray.push(reaction);
       
       // Create new Buttons
-      createButtons();
+      displayButtons();
     });
     }
   
@@ -46,14 +46,14 @@ $(document).ready(function(){
       var reaction= $(this).attr("data-reaction");
 
       var queryURL = "https://api.giphy.com/v1/gifs/search?q="+ reaction + "&api_key=dc6zaTOxFJmzC&limit=10&offset=10";
-      console.log(queryURL);
+      // console.log(queryURL);
 
       $.ajax({
         url: queryURL,
         method: "GET"
       })
       .then(function(response){
-        console.log(response);
+        // console.log(response);
 
         $("#giphSection").empty() //clears previous giphs
 
@@ -77,7 +77,7 @@ $(document).ready(function(){
         giphImage.addClass("giphImages");
         //Adding attr to the image and setting data state. 
         giphImage.attr("data-still", stillURL );
-        giphImage.attr("data-animated", animatedURL);
+        giphImage.attr("data-animate", animatedURL);
         giphImage.attr("data-state", "still");
         //Adding the gif to the div
         giphDiv.append(giphImage);
@@ -88,8 +88,8 @@ $(document).ready(function(){
   }
   //Making function do some work (calling them)
 
-  displayGiph();
-  createButtons();
+  displayButtons();
+  createNewButtons();
 
   //On click functions
 // Display giphs when clicking the buttons
@@ -108,6 +108,7 @@ $(document).on('click', '.giphImages', function(){
 
 });
 
+//Functionality Not Working
   
   
     
