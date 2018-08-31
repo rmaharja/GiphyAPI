@@ -1,5 +1,6 @@
 body{
   font-family: cursive;
+  background-color: lightcyan;
   /* background-image: url ('https://media.giphy.com/media/vPmJKooQbFTOw/giphy.gif');
   background-size: cover; */
 }
@@ -30,4 +31,7 @@ body{
 
 #searchText{
   margin-bottom: 10px;
+}
+button{
+  margin: 5px;
 }
