@@ -12,7 +12,7 @@ $(document).ready(function(){
       // Creating a variable that is a button
       var newButtons= $("<button>");
       // Adding class to the newGiphBtn for easier selection of buttons.
-      newButtons.addClass("newGiphBtn");
+      newButtons.addClass("giphBtn");
       // Adding a data-attribute to add extra info
       newButtons.attr("data-reaction", reactionsArray[i]);
       // Add the text to the button based on the selected array.
@@ -72,6 +72,7 @@ $(document).ready(function(){
         var animatedURL= response.data[i].images.fixed_height.url;
 
         var giphImage= $("<img>").attr("src", srcURL);
+        giphImage.addClass("giphImages")
         //Adding attr to the image and setting data state. 
         giphImage.attr("data-still", stillURL );
         giphImage.attr("data-animated", animatedURL );
@@ -83,6 +84,28 @@ $(document).ready(function(){
       }
     });
   }
+  //Making function do some work (calling them)
+
+  displayGiph();
+  createNewButtons();
+
+  //On click functions
+// Display giphs when clicking the buttons
+  $(document).on("click", ".giphBtn", displayGiph());
+
+//pausing and unpausing the images.
+$(document).on("click", ".giphImages", function(){
+  var state = $(this).attr("data-state");
+  if (state === "still") {
+    $(this).attr("src", $(this).attr("data-animate"));
+    $(this).attr("data-state", "animate");
+  } else {
+    $(this).attr("src", $(this).attr("data-still"));
+    $(this).attr("data-state", "still");
+  }
+
+});
+
   
   
     
