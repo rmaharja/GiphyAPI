@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
   
-  var reactionsArray= [ "wtf", "wow", "nope", "see ya", "OMG", "hahaha", "mindblown",];
+  var reactionsArray= [ "wtf", "wow", "nope", "see ya", "OMG", "hahaha", "mindblown"];
   
   function createButtons (){
   
@@ -32,7 +32,8 @@ $(document).ready(function(){
       event.preventDefault();
     //Getting user input value from the textbox
       var reaction= $("#searchText").val().trim();
-      // console.log(reaction);
+      console.log("submit:");
+      console.log(reaction);
     //Getting the movies  based on the into reactionArray
       reactionArray.push(reaction);
       
@@ -73,10 +74,10 @@ $(document).ready(function(){
         var animatedURL= response.data[i].images.fixed_height.url;
 
         var giphImage= $("<img>").attr("src", srcURL);
-        giphImage.addClass("giphImages")
+        giphImage.addClass("giphImages");
         //Adding attr to the image and setting data state. 
         giphImage.attr("data-still", stillURL );
-        giphImage.attr("data-animated", animatedURL );
+        giphImage.attr("data-animated", animatedURL);
         giphImage.attr("data-state", "still");
         //Adding the gif to the div
         giphDiv.append(giphImage);
@@ -88,7 +89,6 @@ $(document).ready(function(){
   //Making function do some work (calling them)
 
   displayGiph();
-  createNewButtons();
   createButtons();
 
   //On click functions
